@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 import torch
 from matplotlib.transforms import Bbox
 # import and set up the typeguard
@@ -286,18 +287,15 @@ with torch.no_grad():
     # =========================================================================
     # ADDED: Save Predictions to Disk
     # =========================================================================
-    import os
-    import numpy as np
-
     # Convert to numpy: shape (n_test, ensemble_size, data_size)
     preds_np = predictions_test.cpu().detach().numpy()
     targets_np = target_data_test_for_calibration
 
     # Compute point and interval forecasts across the ensemble dimension (axis=1)
-    preds_mean = np.mean(preds_np, axis=1)
-    preds_median = np.median(preds_np, axis=1)
-    preds_lower_95 = np.percentile(preds_np, 2.5, axis=1)
-    preds_upper_95 = np.percentile(preds_np, 97.5, axis=1)
+    # preds_mean = np.mean(preds_np, axis=1)
+    # preds_median = np.median(preds_np, axis=1)
+    # preds_lower_95 = np.percentile(preds_np, 2.5, axis=1)
+    # preds_upper_95 = np.percentile(preds_np, 97.5, axis=1)
 
     # Save to your results directory
     save_dir = "results/lorenz"
@@ -306,10 +304,10 @@ with torch.no_grad():
     np.savez_compressed(
         os.path.join(save_dir, "test_predictions_output.npz"),
         predictions_ensemble=preds_np,   # shape: (n_test, ensemble_size, data_size)
-        mean=preds_mean,                 # shape: (n_test, data_size)
-        median=preds_median,             # shape: (n_test, data_size)
-        lower_95=preds_lower_95,         # shape: (n_test, data_size)
-        upper_95=preds_upper_95,         # shape: (n_test, data_size)
+        # mean=preds_mean,                 # shape: (n_test, data_size)
+        # median=preds_median,             # shape: (n_test, data_size)
+        # lower_95=preds_lower_95,         # shape: (n_test, data_size)
+        # upper_95=preds_upper_95,         # shape: (n_test, data_size)
         targets=targets_np               # shape: (n_test, data_size)
     )
     print(f"\n[INFO] Successfully saved prediction arrays to {save_dir}/test_predictions_output.npz!")
