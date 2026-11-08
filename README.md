@@ -2,9 +2,9 @@
 
 Code for the paper ["Probabilistic Forecasting with Generative Networks via Scoring Rule Minimization"](https://jmlr.org/papers/v25/23-0038.html).
 
+I modify and utilize the code from the paper for my experiment, which can be found at `QP1 report`.
 
-
-We provide here code to run forecast experiments on: 
+They provide code to run forecast experiments on: 
 
 - y coordinate of 3-dimensional Lorenz63 model.
 
@@ -16,7 +16,7 @@ We provide here code to run forecast experiments on:
 
 
 # Scripts
-We have 5 Python scripts: 
+There are 5 Python scripts: 
 
 - `generate_data.py` needs to be run to generate datasets for Lorenz63 and Lorenz96
 - `train_nn.py` trains the generative networks with the different methods
@@ -24,7 +24,7 @@ We have 5 Python scripts:
 - `predict_test_plot_comparison.py` creates comparison plots between three selected methods, for Lorenz63 and Lorenz96
 - `plot_weatherbench.py` creates the plots for WeatherBench data
 
-Additionally, we provide 3 `bash` scripts which show how to run experiments on the three models. 
+Additionally, they provide 3 `bash` scripts which show how to run experiments on the three models. 
 
 - `run_lorenz63.sh` runs some experiments on the Lorenz63 model and allows to reproduce Figure 2a in the paper
 - `run_lorenz96.sh` runs some experiments on the Lorenz96 model and allows to reproduce Figure 2b in the paper
